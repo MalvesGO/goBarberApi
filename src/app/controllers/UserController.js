@@ -1,6 +1,4 @@
 import * as Yup from 'yup';
-
-import { fileURLToPath } from 'url';
 import User from '../models/User';
 
 class UserController {
@@ -20,7 +18,7 @@ class UserController {
     const userExists = await User.findOne({ where: { email: req.body.email } });
 
     if (userExists) {
-      return res.status(400).json({ error: 'Usuario ja cadastrado' });
+      return res.status(400).json({ error: 'User already exists' });
     }
     const { id, name, email, provider } = await User.create(req.body);
 
